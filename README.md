@@ -70,7 +70,8 @@
     });
   });
   ```
-  
+   <br/>
+   
 - ## lodash사용 <br/> (자바스크립트 유틸리티 라이브러리-배열과 객체 데이터를 핸들링할때 사용하기 좋다.)
   - badge scroll 효과
   ```js
@@ -100,4 +101,19 @@
     }
   } ,300 ));
   // _.throttle(함수, 시간)
+  ```
+ <br/>
+ 
+- ## ScrollMagic 사용
+  ```js
+  const spyEls = document.querySelectorAll('section.scroll-spy');
+    spyEls.forEach(function (spyEl) {
+    new ScrollMagic
+      .Scene({
+        triggerElement : spyEl, //보여짐 여부를 감시할 요소를 설정
+        triggerHook : .8 
+      })
+      .setClassToggle(spyEl, 'show')
+      .addTo(new ScrollMagic.Controller());
+  });
   ```
