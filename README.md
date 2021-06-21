@@ -111,9 +111,25 @@
     new ScrollMagic
       .Scene({
         triggerElement : spyEl, //보여짐 여부를 감시할 요소를 설정
-        triggerHook : .8 
+        triggerHook : .8 // 뷰포트 전체를 0~1 범위로, 위치를 생각한다.
       })
       .setClassToggle(spyEl, 'show')
       .addTo(new ScrollMagic.Controller());
   });
+  ```
+  ```css
+  .back-to-position{
+    opacity: 0;
+    transition: 1s;
+  }
+  .back-to-position.to-right{
+    transform: translateX(-150px);
+  }
+  .back-to-position.to-left{ 
+    transform: translateX(150px);
+  }
+  .show .back-to-position {
+    opacity: 1;
+    transform: translateX(0);
+  }
   ```
