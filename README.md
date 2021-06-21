@@ -36,3 +36,68 @@
   ```
 <br/>
 
+- ## youtube iframe api 사용
+  유투브 영상이 출력될 위치 설정
+  ```html
+  <div id="player"></div>
+  ```
+  js 코드설정
+  ```js
+  new YT.Player('player', {
+    videoId: 'An6LvWQuj_8', //재생할 유투브 영상의 id
+    playerVars:{ 
+      autoplay : true, //자동재생 여부 결정
+      loop: true, // 반복 재생 유무
+      playlist : 'An6LvWQuj_8' // 반복 재생할 유투브 영상 ID 목록
+    },
+    events : {
+      onReady: function (event) {
+        event.target.mute() //음소거
+      }
+    }  
+  });
+  ```
+  <br/>
+  
+- ## gsap사용 (javascript를 통해 애니메이션 효과 추가하기)
+  - fade-in 효과
+  ```js
+  const fadeEls = document.querySelectorAll('.visual .fade-in');
+    fadeEls.forEach(function (fadeEl,index){
+      gsap.to(fadeEl, 1, {
+      delay: (index +1) * .7,  //0.7, 1.4 2.1 2.7
+      opacity : 1,
+    });
+  });
+  ```
+  
+- ## lodash사용 <br/> (자바스크립트 유틸리티 라이브러리-배열과 객체 데이터를 핸들링할때 사용하기 좋다.)
+  - badge scroll 효과
+  ```js
+    window.addEventListener('scroll', _.throttle(function (){
+    console.log(window.scrollY);
+    if (window.scrollY > 500){
+      // gsap.to(요소,지속시간,옵션);
+      gsap.to(badgeEl, .6, {
+        opacity: 0,
+        display: 'none'
+      });
+      // badgeEl.style.display = 'none';
+      //버튼 보이기
+      gsap.to(toTopEl,.2 ,{
+        x: 0
+      });
+    }else{
+      gsap.to(badgeEl, .6, {
+        opacity: 1,
+        display: 'block'
+      });
+      // badgeEl.style.display = 'block';
+      //버튼 숨기기
+      gsap.to(toTopEl,.2 ,{
+        x: 100
+      });
+    }
+  } ,300 ));
+  // _.throttle(함수, 시간)
+  ```
